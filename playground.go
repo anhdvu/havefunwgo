@@ -41,6 +41,25 @@ func main() {
 
 	y = -1
 	fmt.Println(y)
+
+	z1 := []string{}
+	fmt.Println(z1)
+	fmt.Printf("%T\n", z1)
+
+	z2 := [6]string{"zero", "one", "two"}
+	fmt.Println(z2)
+	fmt.Printf("%T\n", z2)
+	stest := ""
+
+	for _, value := range z2 {
+		stest += value
+	}
+	fmt.Println(stest)
+
+	z3 := map[string]string{"Sunday": "1", "Monday": "2", "Tuesday": "3", "Wednesday": "4", "Thursday": "5", "Friday": "6", "Saturday": "7"}
+	fmt.Println(z3)
+	fmt.Printf("%T\n", z3)
+
 }
 
 func foo() {
