@@ -1,4 +1,4 @@
-package main
+package primenumbers
 
 import (
 	"fmt"
@@ -20,6 +20,7 @@ func primeNumbers(n int) {
 				}
 			}
 		}
+
 		if check {
 			fmt.Println(i)
 		}
