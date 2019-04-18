@@ -1,28 +1,35 @@
-package primenumbers
+package main
 
 import (
 	"fmt"
 )
 
 func main() {
-	primeNumbers(50)
+	fmt.Println(primeNumbers(53))
 }
 
-func primeNumbers(n int) {
-	var check bool
-	for i := 2; i < n; i++ {
-		check = true
-		if i > 2 {
-			for j := 2; j < i; j++ {
-				if i%j == 0 {
-					check = false
-					break
-				}
-			}
-		}
+func isPrime(number int) bool {
+	if number < 2 {
+		return false
+	}
 
-		if check {
-			fmt.Println(i)
+	for f := 2; f < number; f++ {
+		if number%f == 0 {
+			return false
 		}
 	}
+
+	return true
+}
+
+func primeNumbers(n int) []int {
+	result := make([]int, 1)
+
+	for i := 0; i <= n; i++ {
+		if isPrime(i) {
+			result = append(result, i)
+		}
+	}
+
+	return result
 }
