@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+// Beginning of main function to execute this script
 func main() {
 	fmt.Println(primeNumbers(53))
 }
