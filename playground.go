@@ -1,71 +1,50 @@
 package main
 
 import (
+	"encoding/csv"
+	"flag"
 	"fmt"
+	"os"
 )
 
-// var x int = 42
-// var y string = "James Bond"
-//  var z bool = true
-
-type dace int
-
-var x dace
-var y int
+type record struct {
+	field0, field1, field2, field3 string
+}
 
 func main() {
-	// x := 42
-	// y := "James Bond"
-	// z := true
+	// Data
+	record1 := record{"1", "2", "3", "4"}
+	record2 := record{"a", "b", "c", "d"}
 
-	// fmt.Println(x, y, z)
-	// fmt.Println(x)
-	// fmt.Println(y)
-	// fmt.Println(z)
+	records := []record{record1, record2}
+	result := [][]string{}
 
-	// s := fmt.Sprintf("%v %v %v", x, y, z)
-	// fmt.Println(s)
-
-	fmt.Println(x)
-	fmt.Printf("%T\n", x)
-	x = 42
-	fmt.Println(x)
-
-	y = int(x)
-	fmt.Println(y)
-	fmt.Printf("%T\n", y)
-
-	a := "hahahaha"
-	fmt.Println(len(a))
-	fmt.Printf("%T\n", len(a))
-
-	y = -1
-	fmt.Println(y)
-
-	z1 := []string{}
-	fmt.Println(z1)
-	fmt.Printf("%T\n", z1)
-
-	z2 := [6]string{"zero", "one", "two"}
-	fmt.Println(z2)
-	fmt.Printf("%T\n", z2)
-	stest := ""
-
-	for _, value := range z2 {
-		stest += value
+	for _, record := range records {
+		temp := make([]string, 4)
+		assign(temp, record)
+		result = append(result, temp)
 	}
-	fmt.Println(stest)
 
-	z3 := map[string]string{"Sunday": "1", "Monday": "2", "Tuesday": "3", "Wednesday": "4", "Thursday": "5", "Friday": "6", "Saturday": "7"}
-	fmt.Println(z3)
-	fmt.Printf("%T\n", z3)
+	// CLI flags
+
+	outFlag := flag.String("o", "output", "Filename of the output file")
+	flag.Parse()
+
+	// Create and write to file
+	ext := ".csv"
+	f, err := os.Create(*outFlag + ext)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer f.Close()
+	w := csv.NewWriter(f)
+	w.WriteAll(result)
 
 }
 
-func foo() {
-	for i := 0; i < 100; i++ {
-		if i%2 == 0 {
-			fmt.Println(i)
-		}
-	}
+func assign(sa []string, rc record) {
+	sa[0] = rc.field0
+	sa[1] = rc.field1
+	sa[2] = rc.field2
+	sa[3] = rc.field3
 }
