@@ -1,0 +1,47 @@
+---
+name: test config
+cookie:
+  - CFID=20557
+  - CFTOKEN=3b79a1e3c773c94-E7F38875-D295-8B7C-22E05E8FB40599AD
+testcard:
+  number: '5338485258218895'
+  expirydate: '3011'
+  cvv: '654'
+  pin: '1234'
+share:
+  defaultCode: '978'
+  defaultDecimal: '2'
+  amountMin: 1
+  amountMax: 10
+testcases:
+  - included: true # Possible values: true/false. Set to "false" to exclude the test in the run. Default value: true
+    name: Test an ecommerce transaction
+    runs: 1 # Set the number of runs for a specific test case. Default value: 1
+    mode: web # Possible values: pos, web, settlement. Any other values will be assumed error.
+    atm: false # Possible values: true/false. Set to true to indicate the transaction type is ATM (01). Default value: false
+    settleType: # Possible values: refund, fxload, fxdeduct. This field must be set when mode == settlement. Default value: "" (emptry string)
+    reversal: # Possible values: none, partial, or full. Any other values will be assumed as "". Default value: "" (empty string)
+    mcc: '7299'
+    source: emv # Possible values: mag, emv, or nfc. Any other values will be assumed as mag. Default value: emv
+    foreign: false # Possible values: true/false. Set to true to indicate the original currency is not the one set in campaign setting. Default value: false 
+    originalCurrencyCode: # If not explicitly set while foreign == true, the automator will take defaultOriginalCurrencyCode instead.
+    originalCurrencyDecimalPlaces: # If not explicitly set while foreign == true, the automator will take defaultOriginalCurrencyDecimalPlaces instead.
+    acquirer: ECOM DEDUCT
+    province: COMPANION
+    country: VNM # Country should be set to align with originalCurrencyCode if foreign == true
+
+  - included: true 
+    name: Test a pos transaction
+    runs: 1 
+    mode: pos 
+    atm: false 
+    settleType: 
+    reversal: full 
+    mcc: '7299'
+    source: nfc 
+    foreign: false 
+    originalCurrencyCode: 
+    originalCurrencyDecimalPlaces:
+    acquirer: ECOM DEDUCT
+    province: COMPANION
+    country: VNM

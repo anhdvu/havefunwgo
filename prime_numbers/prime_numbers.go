@@ -7,7 +7,7 @@ import (
 
 // Beginning of main function to execute this script
 func main() {
-	fmt.Println(primeNumbers(10))
+	fmt.Println(primeNumbers(14))
 }
 
 func isPrime(number int) bool {
