@@ -2,10 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/url"
-	"os"
 	"regexp"
 	"strconv"
 
@@ -25,9 +25,9 @@ type Delta struct {
 func main() {
 	// var sentry float64 = 18165.79
 	u := url.URL{
-		Scheme: "wss",
-		Host:   "stream.binance.com:9443",
-		Path:   "/ws/btcusdt@kline_1m",
+		Scheme: "ws",
+		Host:   "localhost:7878",
+		Path:   "/ws",
 	}
 
 	c, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
@@ -40,13 +40,13 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		if err != nil {
-			log.Fatal(err)
-		}
-		d := makeDelta(msg)
-		f, _ := os.OpenFile("dynamic_delta.txt", os.O_WRONLY, 755)
-		defer f.Close()
-		d.ToJSON(f)
+
+		fmt.Printf("%s", msg)
+
+		// d := makeDelta(msg)
+		// f, _ := os.OpenFile("dynamic_delta.txt", os.O_WRONLY, 755)
+		// defer f.Close()
+		// d.ToJSON(f)
 	}
 
 	// _, msg, err := c.ReadMessage()
