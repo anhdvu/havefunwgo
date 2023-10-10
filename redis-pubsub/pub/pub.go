@@ -11,8 +11,8 @@ import (
 )
 
 type msg struct {
-	ID      int
 	Content string
+	ID      int
 }
 
 func main() {
